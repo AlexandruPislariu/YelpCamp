@@ -60,7 +60,7 @@ app.use(indexRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds", campgroundRoutes);
 
-app.listen(3000, () => 
+app.listen(process.env.PORT || 3000, () => 
 {
     console.log("YelpCamp Server has started at port 3000!");
 });
