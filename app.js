@@ -20,8 +20,8 @@ app.locals.moment = require("moment");
 
 // seed the database
 // seedDB();
-
-mongoose.connect("mongodb+srv://process.env.adminDatabase:process.env.passDatabase@yelpcamp.hfszq.mongodb.net/yelp_camp?retryWrites=true&w=majority",
+console.log(process.env.DATABASEURL);
+mongoose.connect(process.env.DATABASEURL,
 {
     useNewUrlParser: true,
     useUnifiedTopology: true
