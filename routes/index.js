@@ -32,7 +32,7 @@ router.post("/register", (req, res) =>
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
-            avatar: req.body.avatar
+            avatar: req.body.avatar || "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQTiXjldHhFIVdvZDCeoq6sSzSzxg95OvLCxQ&usqp=CAU"
         }
     )
     User.register(newUser, req.body.password, (error, user) =>

@@ -6,7 +6,6 @@ const   express     = require("express");
         flash       = require("connect-flash");
 let     Campground      = require("./models/campground");
         Comment         = require("./models/comment");
-        seedDB          = require("./seeds");
         passport        = require("passport");
         LocalStrategy   = require("passport-local");
         methodOverride  = require("method-override");
