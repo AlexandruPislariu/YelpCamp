@@ -49,7 +49,7 @@ router.post("/", middleware.isLoggedIn, (req, res) =>
       // Create a new campground and save to DB
       Campground.create(newCampground, (error, newlyCreated) =>
       {
-          if(err){
+          if(error){
               console.log(error);
           } else {
               //redirect back to campgrounds page
