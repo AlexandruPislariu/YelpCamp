@@ -21,7 +21,7 @@ app.locals.moment = require("moment");
 // seed the database
 // seedDB();
 
-mongoose.connect("mongodb+srv://pislaAdmin:pushIThard1@yelpcamp.hfszq.mongodb.net/yelp_camp?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://process.env.adminDatabase:process.env.passDatabase@yelpcamp.hfszq.mongodb.net/yelp_camp?retryWrites=true&w=majority",
 {
     useNewUrlParser: true,
     useUnifiedTopology: true
