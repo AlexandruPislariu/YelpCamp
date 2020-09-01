@@ -18,9 +18,6 @@ let commentRoutes       = require("./routes/comments");
 
 app.locals.moment = require("moment");
 
-// seed the database
-// seedDB();
-console.log(process.env.DATABASEURL);
 mongoose.connect(process.env.DATABASEURL,
 {
     useNewUrlParser: true,
