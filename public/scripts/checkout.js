@@ -5,7 +5,7 @@ function errorHandler(error)
     displayError.textContent = error;
 };
 
-var stripe = Stripe("pk_test_51HNEmpAHYO2lcvLzmA645mSfFrB0rRm9railVYhUM43CT4yszkC5hd59lC3xDJHKaXsDyFfXDVA60KmlxvLsjdSN00izBATL9O");
+var stripe = Stripe("pk_test_51HNEmpAHYO2lcvLz9oxqXiEC6wwUJGszhQvCcYvtX6i1u0eOibA9yDr8TEYyGbd63z1W0iE6youoe170N8YMRCGY00JD6Fmho3");
 var orderData = 
 {
     items: [{id: "yelpcamp-payment"}],
