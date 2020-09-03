@@ -17,6 +17,8 @@ var geocoder = NodeGeocoder(options);
 // INDEX - Show all campgrounds
 router.get("/", (req, res) => 
 {   
+    if(req.query.paid)
+        res.locals.success = "Payment succeeded, welcome to YelpCamp!";
     // Get all campgrounds from DB
     Campground.find({}, (error, allCampgrounds) =>
     {
@@ -28,7 +30,7 @@ router.get("/", (req, res) =>
 });
 
 // NEW - show form to create new campground
-router.get("/new", middleware.isLoggedIn, (req, res) => 
+router.get("/new", middleware.isLoggedIn, middleware.isPaid, (req, res) => 
 {
     res.render("campgrounds/new");
 });

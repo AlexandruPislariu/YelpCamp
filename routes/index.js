@@ -4,13 +4,8 @@ let passport = require("passport");
 let User = require("../models/user");
 let Campground = require("../models/campground");
 const campground = require("../models/campground");
-
-// Password reset
-let async = require("async");
-let nodemailer = require("nodemailer");
-let crypto = require("crypto");
-const { nextTick } = require("process");
-const user = require("../models/user");
+const {isLoggedIn} = require("../middleware/index");
+const stripe = require("stripe")(process.env.SECRET_STRIPE_KEY);
 
 router.get("/", (req, res) => 
 {
@@ -97,5 +92,43 @@ router.get("/users/:id", (req, res) =>
         }
     });
 });
-  
+
+// Payment System
+router.get("/checkout", isLoggedIn, async (req, res) => {
+
+    res.render("checkout", {PUBLIC_STRIPE_KEY: process.env.PUBLIC_STRIPE_KEY});
+
+});
+
+// POST pay
+router.post("/pay", async (req, res) =>
+{   
+    const { paymentMethodId, items, currency } = req.body;
+    const orderAmount = 2000;
+
+    try{
+        // Create new PaymentIntent with PaymentMethod ID from the client.
+        const intent = await stripe.paymentIntents.create({
+            amount: orderAmount,
+            currency : currency,
+            payment_method: paymentMethodId,
+            error_on_requires_action: true,
+            confirm: true
+        });
+
+        req.user.isPaid = true;
+        await req.user.save();
+
+        res.send({clientSecret: intent.client_secret});
+
+    }catch(error){
+        if(error.code==="authentication_required")
+        {
+            res.send({error:"This card requires authentication in order to proceeded"});
+        }
+        else
+            res.send({error: error.message});
+    }
+})
+
 module.exports = router;

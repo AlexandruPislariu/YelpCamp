@@ -86,6 +86,14 @@ let middlewareObj = {
         }
         req.flash("error", "You need to be logged in to do that!"); //key-value
         res.redirect("/login");
+    },
+    isPaid: function(req, res, next)
+    {
+        if(req.user.isPaid)
+            return next();
+
+        req.flash("error", "Please complete payment process");
+        res.redirect("/checkout");   
     }
 
 };

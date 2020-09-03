@@ -10,7 +10,8 @@ let userSchema = new mongoose.Schema({
     avatar:
     {
         type: String,
-    }
+    },
+    isPaid: {type: Boolean, default: false}
 });
 userSchema.plugin(passportLocalMongoose);
 

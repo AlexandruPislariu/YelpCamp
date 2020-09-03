@@ -14,7 +14,6 @@ let     Campground      = require("./models/campground");
 let commentRoutes       = require("./routes/comments");
     campgroundRoutes    = require("./routes/campgrounds");
     indexRoutes         = require("./routes/index");
-
 app.locals.moment = require("moment");
 
 mongoose.connect(process.env.DATABASEURL,
@@ -29,6 +28,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(flash());
 app.set("view engine", "ejs");
+app.use(express.json());
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
