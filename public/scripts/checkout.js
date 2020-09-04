@@ -33,12 +33,13 @@ var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function(ev) {
     ev.preventDefault();
+    changeLoadingState(true);
     stripe.createPaymentMethod("card", card)
         .then(function(result)
         {   
             if(result.error)
             {   
-                errorHandler(result.error);
+                errorHandler(result.error.message);
             }
             else
             {
@@ -62,7 +63,7 @@ form.addEventListener('submit', function(ev) {
         {
             if(response.error)
             {   
-                errorHandler(response.error);
+                errorHandler(response.error.message);
             }
             else
             {   
