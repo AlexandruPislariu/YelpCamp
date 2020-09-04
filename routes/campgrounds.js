@@ -3,16 +3,6 @@ let router = express.Router();
 let Campground = require("../models/campground");
 const campground = require("../models/campground");
 let middleware = require("../middleware/index");
-var NodeGeocoder = require('node-geocoder');
- 
-var options = {
-  provider: 'google',
-  httpAdapter: 'https',
-  apiKey: process.env.GEOCODER_API_KEY,
-  formatter: null
-};
- 
-var geocoder = NodeGeocoder(options);
 
 // INDEX - Show all campgrounds
 router.get("/", (req, res) => 
