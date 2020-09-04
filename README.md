@@ -9,6 +9,7 @@ Access this link to see how it works: https://yelp-camp-03072.herokuapp.com/
   * User profile
   * Time since a post was created
   * UI improvements (Bootstrap, SemanticUI)
+  * Payment System using Stripe
   
 ## Server Side Frameworks
   * Express (responsible for htpp resquest/response lifecyle)
