@@ -11,6 +11,7 @@ Access this link to see how it works: https://yelp-camp-03072.herokuapp.com/
   * UI improvements (Bootstrap, SemanticUI)
   * Payment System using Stripe
   * Like Functionality
+  * Send Email using SendGrid API
   
 ## Server Side Frameworks
   * Express (responsible for htpp resquest/response lifecyle)
