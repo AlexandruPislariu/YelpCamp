@@ -6,6 +6,8 @@ let Campground = require("../models/campground");
 const campground = require("../models/campground");
 const {isLoggedIn} = require("../middleware/index");
 const stripe = require("stripe")(process.env.SECRET_STRIPE_KEY);
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDER_API_KEY);
 
 router.get("/", (req, res) => 
 {
@@ -131,4 +133,36 @@ router.post("/pay", async (req, res) =>
     }
 })
 
+// CONTACT route
+router.get("/contact", (req, res) =>
+{
+    res.render("contact");
+});
+
+router.post("/contact", async (req, res) =>
+{   
+    const message = 
+    {
+        to: process.env.APP_EMAIL,
+        from: req.body.email,
+        subject: 'YelpCamp Contact',
+        text: req.body.message,
+        html: req.sanitize(req.body.message)
+    };
+    try{
+        
+        await sgMail.send(message);
+        req.flash("success", "Thank you for your email");
+        res.redirect("back");
+
+    }catch(error){
+
+        if(error.response)
+        {
+            console.error(error.response.body);
+        }
+        req.flash("error", "Sorry, something went wrong");
+        res.redirect("back");
+    }
+});
 module.exports = router;

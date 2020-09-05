@@ -12,6 +12,7 @@ let     Campground      = require("./models/campground");
         User            = require("./models/user");
 // requiring routes
 let commentRoutes       = require("./routes/comments");
+const expressSanitizer = require('express-sanitizer');
     campgroundRoutes    = require("./routes/campgrounds");
     indexRoutes         = require("./routes/index");
 app.locals.moment = require("moment");
@@ -29,6 +30,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(flash());
 app.set("view engine", "ejs");
 app.use(express.json());
+app.use(expressSanitizer());
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
