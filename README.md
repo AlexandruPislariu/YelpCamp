@@ -4,7 +4,8 @@ Access this link to see how it works: https://yelp-camp-03072.herokuapp.com/
 # App functionalities
   * Login
   * Register
-  * Create new posts, comments
+  * Create new posts
+  * Comments manipulation on the show page
   * Authorization
   * User profile
   * Time since a post was created
