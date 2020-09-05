@@ -4,19 +4,6 @@ let Campground = require("../models/campground");
 let Comment = require("../models/comment");
 let middleware = require("../middleware/index");
 
-// NEW for comments
-router.get("/new", middleware.isLoggedIn, (req, res) =>
-{   
-    // find campground by id
-    Campground.findById(req.params.id, (error, foundCampground) =>
-    {
-        if(error)
-            console.log(error);
-        else
-            res.render("comments/new", {campground: foundCampground});
-    });
-});
-
 // CREATE for comments
 router.post("/", middleware.isLoggedIn, (req, res) =>
 {
@@ -54,15 +41,6 @@ router.post("/", middleware.isLoggedIn, (req, res) =>
         }
     });
     // redirect campground show page
-});
-
-// EDIT for comments
-router.get("/:comment_id/edit", middleware.checkCommentOwnership, (req, res) =>
-{   
-    Comment.findById(req.params.comment_id, (error, foundComment) =>
-    {   
-        res.render("comments/edit", {campground_id: req.params.id, comment: foundComment});
-    });
 });
 
 // UPDATE for comments
